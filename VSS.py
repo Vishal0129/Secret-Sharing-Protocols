@@ -14,5 +14,3 @@ class VSS(SSS):
     def validate(self, shares):
         pass
     
-vss = VSS(42, 5, 3)
-print(vss.commitments(3))
