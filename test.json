@@ -1,0 +1,46 @@
+{
+  "k": 7,
+  "n": 10,
+  "shares": [
+    {
+      "index": 1,
+      "value": { "value": "2159075f7af2a317", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 2,
+      "value": { "value": "4c5c702a98547bb3", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 3,
+      "value": { "value": "4d9ee419aa5170de", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 4,
+      "value": { "value": "4c4a24d2eee2394c", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 5,
+      "value": { "value": "25d72a54bbfa387b", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 6,
+      "value": { "value": "51b6d1b8b1dc946", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 7,
+      "value": { "value": "3a89ed8ec4c88341", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 8,
+      "value": { "value": "55a7f8b44ba37ade", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 9,
+      "value": { "value": "4a44eeffb5ca82c8", "prime": "6614778c220900eb" }
+    },
+    {
+      "index": 10,
+      "value": { "value": "abcd95001cf6631", "prime": "6614778c220900eb" }
+    }
+  ]
+}
