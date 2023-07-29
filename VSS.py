@@ -1,4 +1,4 @@
-from SSN import SSS
+from SSS import SSS
 
 class VSS(SSS):
     def __init__(self, secret, n, k):

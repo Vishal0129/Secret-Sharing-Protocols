@@ -1,5 +1,5 @@
 import random
-from prime import prime_field, prime_field_value, get_prime
+from prime import prime_field, prime_field_value, get_prime, mod_inverse
 
 class SSS():
     def __init__(self, secret:int, n:int, k:int):
@@ -19,14 +19,11 @@ class SSS():
             share_set[i+1] = prime_field_value(self.get_func_value(i+1), self.p)
         return share_set          
 
-    def modInverse(self, A, M) -> int:
-        for X in range(1, M):
-            if (((A % M) * (X % M)) % M == 1):
-                return X
-        return -1
+    
     
     def reconstruct(self, shares: dict) -> int:
         if len(shares) < self.k:
+            print("Secret cannot be reconstructed")
             return None
         s = 0
         for i in shares.keys():
@@ -38,5 +35,5 @@ class SSS():
                     denominator *= i - j
             if denominator == 0:
                 continue
-            s += shares[i] * numerator * self.modInverse(denominator, self.p)
+            s += shares[i] * numerator * mod_inverse(denominator, self.p)
         return prime_field_value(s, self.p)

@@ -31,3 +31,9 @@ def is_prime(n) -> bool:
 def prime_field_group(g, p) -> list:
     """Returns a finite field group with p elements."""
     return list(set([g ** i % p for i in range(p)]))
+
+def mod_inverse(A, M) -> int:
+        for X in range(1, M):
+            if (((A % M) * (X % M)) % M == 1):
+                return X
+        return -1
