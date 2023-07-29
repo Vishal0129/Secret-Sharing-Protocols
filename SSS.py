@@ -2,7 +2,7 @@ import random
 from utils import prime_field_value, get_prime, mod_inverse
 
 class SSS():
-    def __init__(self, k:int, p:int):
+    def __init__(self,secret:int, n:int, k:int):
         # self.secret = secret
         # self.n = n
         self.k = k

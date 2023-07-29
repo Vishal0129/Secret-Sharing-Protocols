@@ -25,9 +25,3 @@ def get_data(url):
         "p_share": p_share,
         "p_commitment": p_commitment
     }
-
-def main():
-    get_data()
-
-if __name__ == "__main__":
-    main()
