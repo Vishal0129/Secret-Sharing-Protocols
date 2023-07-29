@@ -1,29 +1,36 @@
-from SSS import SSS
+def reconstruct(shares, prime):
+    def interpolate(x, shares, prime):
+        result = 0
+        for i in range(len(shares)):
+            xi, yi = shares[i]
+            numerator, denominator = 1, 1
+            for j in range(len(shares)):
+                if i != j:
+                    xj, yj = shares[j]
+                    numerator = (numerator * (x - xj)) % prime
+                    denominator = (denominator * (xi - xj)) % prime
+            result = (result + (numerator * pow(denominator, -1, prime) * yi)) % prime
+        return result
 
-def sss_test():
-    secret = int(input("Enter the secret: "))
-    shares = int(input("Enter the number of shares: "))
-    threshold = int(input("Enter the threshold: "))
-    sss = SSS(secret, shares, threshold)
+    return interpolate(0, shares, prime)
 
-    print("Shares: \n")
-    sss_shares = sss.shares()
-    print(sss_shares)
-    for i in sss_shares.keys():
-        print(i, ":", sss_shares[i])
+def secret(shares, prime):
+    return reconstruct(shares, prime)
 
-    # print("Reconstructed secret: ", sss.reconstruct(sss.shares()))
-    print("Input {sss.k} shares to reconstruct the secret: ")
-    re_shares = dict()
-    for i in range(sss.k):
-        share_number = int(input("Enter the share number: "))
-        share_value = int(input("Enter the share value: "))
-        re_shares[share_number] = share_value 
-    print(re_shares)
-    print("Reconstructed secret: ", sss.reconstruct(re_shares))
+def input_shares(k:int):
+    shares = []
+    for _ in range(k):
+            x = int(input("Enter index: "))
+            y = int(input("Enter value: "),16)
+            shares.append((x, y))
+    return shares
 
-def main():
-    sss_test()
+# Example usage:
+p = int(input("Enter the prime number:"),16)
+k = int(input("Enter the threshold value:"))
+# Get shares from the user
+shares = input_shares(k)
 
-if __name__ == "__main__":
-    main()
+# Cracking the secret
+reconstructed_secret = secret(shares, p)
+print("Reconstructed Secret:", reconstructed_secret)
