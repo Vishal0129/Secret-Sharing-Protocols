@@ -27,3 +27,9 @@ def is_prime(n) -> bool:
             return False
         i = i + 6
     return True
+
+def prime_field_group(g, p) -> list:
+    """Returns a finite field group with p elements."""
+    return list(set([g ** i % p for i in range(p)]))
+
+print(prime_field_group(3, 11))

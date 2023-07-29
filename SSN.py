@@ -1,27 +1,53 @@
 import random
 from prime import prime_field, prime_field_value, get_prime
 
-class SSN():
+class SSS():
     def __init__(self, secret:int, n:int, k:int):
         self.secret = secret
         self.n = n
         self.k = k
-        self.p = get_prime(n)
+        self.p = get_prime(self.secret)
+        # self.p = 37
         self.polynomial_coefficients = [secret] + [random.randint(0, self.p-1) for i in range(k-1)]
+        # self.polynomial_coefficients = [2,4,3]
 
-    def get_func_value(self, x:int) -> int:
+    def get_func_value(self, x: int) -> int:
         return sum([self.polynomial_coefficients[i] * (x ** i) for i in range(self.k)])
     
     def shares(self) -> dict:
         share_set = dict()
         for i in range(self.k):
-            print(self.get_func_value(i))
-            share_set[i] = prime_field_value(self.get_func_value(i), self.p)
+            print(self.get_func_value(i+1))
+            share_set[i+1] = prime_field_value(self.get_func_value(i+1), self.p)
         return share_set          
 
+    def modInverse(self, A, M):
+        for X in range(1, M):
+            if (((A % M) * (X % M)) % M == 1):
+                return X
+        return -1
+    
+    def reconstruct(self, shares: dict) -> int:
+        if len(shares) < self.k:
+            return None
+        s = 0
+        for i in shares.keys():
+            numerator = 1
+            denominator = 1
+            for j in shares.keys():
+                if i != j:
+                    numerator *= -j
+                    denominator *= i - j
+            if denominator == 0:
+                continue
+            s += shares[i] * numerator * self.modInverse(denominator, self.p)
+        return prime_field_value(s, self.p)
 
 
-ssn = SSN(42, 5, 3)
+ssn = SSS(42, 5, 3)
 print(ssn.polynomial_coefficients)
-print(ssn.p)
-print(ssn.shares())
+# print(ssn.p)
+# print(ssn.shares())
+shares = ssn.shares()
+print(shares)
+print(ssn.reconstruct({1: shares[1], 2: shares[2], 3: shares[3]}))
