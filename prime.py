@@ -1,19 +1,19 @@
-def prime_field(p):
+def prime_field(p) -> list:
     """Returns a finite field with p elements."""
     return list(range(p))
 
-def prime_field_value(p, x):
+def prime_field_value(p, x) -> int:
     """Returns the value of x in the finite field with p elements."""
     return x % p
 
-def get_prime(n):
+def get_prime(n) -> int:
     """Returns a prime greater than n and k"""
     p = n + 1
     while not is_prime(p):
         p += 1
     return p
 
-def is_prime(n):
+def is_prime(n) -> bool:
     """Returns True if n is prime, False otherwise."""
     if n <= 1:
         return False
