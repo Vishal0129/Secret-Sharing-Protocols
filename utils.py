@@ -79,6 +79,6 @@ def field_prime_value(num, p):
     field_prime_val = (numerator * inv_denominator) % p
     return field_prime_val
 
-a = input("Enter num: ")
-p = int(input("Enter p: "))
-print(field_prime_value(Fraction(a), p))
+# a = input("Enter num: ")
+# p = int(input("Enter p: "))
+# print(field_prime_value(Fraction(a), p))
