@@ -6,7 +6,7 @@ def prime_field_value(p, x):
     """Returns the value of x in the finite field with p elements."""
     return x % p
 
-def get_prime(n, k):
+def get_prime(n):
     """Returns a prime greater than n and k"""
     p = n + 1
     while not is_prime(p):
