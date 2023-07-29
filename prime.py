@@ -2,7 +2,7 @@ def prime_field(p) -> list:
     """Returns a finite field with p elements."""
     return list(range(p))
 
-def prime_field_value(p, x) -> int:
+def prime_field_value(x, p) -> int:
     """Returns the value of x in the finite field with p elements."""
     return x % p
 
