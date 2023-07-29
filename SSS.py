@@ -1,5 +1,5 @@
 import random
-from prime import prime_field, prime_field_value, get_prime, mod_inverse
+from utils import prime_field_value, get_prime, mod_inverse
 
 class SSS():
     def __init__(self, secret:int, n:int, k:int):
