@@ -14,8 +14,8 @@ class SSS():
     
     def shares(self) -> dict:
         share_set = dict()
-        for i in range(self.k):
-            print(self.get_func_value(i+1))
+        for i in range(self.n):
+            # print(self.get_func_value(i+1))
             share_set[i+1] = prime_field_value(self.get_func_value(i+1), self.p)
         return share_set          
 
