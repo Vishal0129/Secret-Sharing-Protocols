@@ -1,22 +1,21 @@
 import random
-from utils import prime_field_value, get_prime, mod_inverse
+from utils import field_prime_value, get_prime, mod_inverse
 
 class SSS():
     def __init__(self,secret:int, n:int, k:int):
-        # self.secret = secret
-        # self.n = n
+        self.secret = secret
+        self.n = n
         self.k = k
-        # self.p = get_prime(self.secret)
-        # self.polynomial_coefficients = [secret] + [random.randint(0, self.p-1) for i in range(k-1)]
+        self.p = get_prime(self.secret)
+        self.polynomial_coefficients = [secret] + [random.randint(0, self.p-1) for i in range(k-1)]
 
     def get_func_value(self, x: int) -> int:
-        pass
-        # return sum([self.polynomial_coefficients[i] * (x ** i) for i in range(self.k)])
+        return sum([self.polynomial_coefficients[i] * (x ** i) for i in range(self.k)])
     
     def shares(self) -> dict:
         share_set = dict()
         for i in range(self.n):
-            share_set[i+1] = prime_field_value(self.get_func_value(i+1), self.p)
+            share_set[i+1] = field_prime_value(self.get_func_value(i+1), self.p)
         return share_set          
     
     def reconstruct_from_all(self, shares: dict) -> int:
@@ -34,7 +33,7 @@ class SSS():
             if denominator == 0:
                 continue
             s += shares[i] * numerator * mod_inverse(denominator, self.p)
-        return prime_field_value(s, self.p)
+        return field_prime_value(s, self.p)
     
     def reconstruct(self, shares, prime):
         def interpolate(x, shares, prime):

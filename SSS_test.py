@@ -21,16 +21,16 @@ def input_shares(k:int):
     shares = []
     for _ in range(k):
             x = int(input("Enter index: "))
-            y = int(input("Enter value: "),16)
+            y = int(input("Enter value(HEX): "),16)
             shares.append((x, y))
     return shares
 
 # Example usage:
-p = int(input("Enter the prime number:"),16)
+p = int(input("Enter the prime number(HEX):"),16)
 k = int(input("Enter the threshold value:"))
 # Get shares from the user
 shares = input_shares(k)
 
 # Cracking the secret
 reconstructed_secret = secret(shares, p)
-print("Reconstructed Secret:", reconstructed_secret)
+print("Reconstructed Secret(HEX):", reconstructed_secret)
