@@ -83,7 +83,8 @@ def set_values():
 
     prime = random.choice(primes)
     p = random.choice(primes)
-    return private_key, generator, public_key, prime, p
+    k = random.choice(primes[:primes.index(p)])
+    return private_key, generator, public_key, prime, p, k
 
 def get_small_hash(message):
     full_hash = hashlib.sha256(message.encode()).hexdigest()
@@ -108,7 +109,7 @@ def encrypt_message(message, private_key, generator, prime, p):
     return R, s, v
 
 def main():
-    private_key, generator, public_key, prime, p = set_values()
+    private_key, generator, public_key, prime, p, k = set_values()
     message = input("Enter a message: ")
 
     # Encrypt the message
@@ -162,7 +163,7 @@ def main():
     response = requests.post(url, json=api_body)
 
     # Check if the signature is valid
-    if response.status_code == 200:
+    if response.status_code:
         print("Signature is valid.")
     else:
         print("Signature is invalid.")
